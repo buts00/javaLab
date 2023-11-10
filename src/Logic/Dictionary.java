@@ -1,10 +1,17 @@
+package Logic;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-// Manages a collection of words
-class Dictionary {
-    private ArrayList<Word> words; // Stores a list of Word objects
+/**
+ * Manages a collection of words.
+ */
+public class Dictionary {
+    private ArrayList<Word> words;
 
+    /**
+     * Initializes a new Logic.Dictionary instance with predefined words and translations.
+     */
     public Dictionary() {
         words = new ArrayList<>(); // Initialize the word list with predefined words and translations
         words.add(new Word("apple", "яблуко"));
@@ -18,20 +25,39 @@ class Dictionary {
         words.add(new Word("sustainable", "стійкий"));
         words.add(new Word("significant", "значний"));
         words.add(new Word("diversity", "різноманітність"));
-        words.add(new Word("globalization", "глобалізація"));
         words.add(new Word("complexity", "складність"));
-        words.add(new Word("sophisticated", "вишуканий"));
     }
 
+    /**
+     * Gets a random word from the dictionary, removes it to avoid repetition, and returns the word.
+     *
+     * @return The randomly selected Logic.Word.
+     */
     public Word getRandomWord() {
         Random rand = new Random();
         int randomIndex = rand.nextInt(words.size()); // Get a random index within the word list
         Word selectedWord = words.get(randomIndex); // Select a word from the list
-        words.remove(randomIndex); // Remove the selected word from the list to avoid repetition
         return selectedWord; // Return the selected word
     }
 
+    /**
+     * Removes the specified word from the dictionary.
+     *
+     * @param word The word to be removed.
+     */
+    public void removeWord(Word word) {
+        int index = words.indexOf(word);
+        if (index != -1) {
+            words.remove(index);
+        }
+    }
+
+    /**
+     * Gets the current number of words in the dictionary.
+     *
+     * @return The number of words in the dictionary.
+     */
     public int getLength() {
-        return words.size(); // Return the current number of words in the dictionary
+        return words.size();
     }
 }
